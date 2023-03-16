@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Outspan Hospital</title>
+    <link rel="icon" href="./assets/img/icon.jpg" type="image/icon type">
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="adminstyle.css">
+  </head>
+  <body>    
+    <div class="wrapper">
+        <div class="justify-content-center text-center mb-1">
+<img src="../assets/img/logo.png" class="m-4 img-fluid" style="width: 150px;" alt="">
+    </div>
+    <div class="allitems">
+      <div class="title">
+        Login Form</div>
+        <div class="panel-footer text-center" id="e_msg"></div>
+        <form onsubmit="return false" id="admin_login">
+                <div class="field">
+                  <input type="text" name="username" required>
+                  <label>Username</label>
+                </div>
+        <div class="field">
+                  <input type="password" name="password" required>
+                  <label>Password</label>
+                </div>
+        <div class="content">
+                  <div class="checkbox">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                  </div>
+        <div class="pass-link">
+        <a href="forgot_password.html">Forgot password?</a></div>
+        </div>
+        <div class="field">
+                  <input type="submit" value="Login">
+                </div>
+        </form>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+  	$("#admin_login").on("submit",function(event){
+		event.preventDefault();
+		$(".overlay").show();
+		$.ajax({
+			url	:	"admin_login.php",
+			method:	"POST",
+			data	:$("#admin_login").serialize(),
+			success	:function(data){
+				if(data == "login_success"){
+					window.location.href = "admin-home.php";
+				}else{
+					$("#e_msg").html(data);
+					$(".overlay").hide();
+				}
+			}
+		})
+	})
+</script>
+<script src="admin_main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
